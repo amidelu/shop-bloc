@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignInTextFieldWidget extends StatelessWidget {
-  const SignInTextFieldWidget({super.key, this.hintText, this.imagePath, this.keyboardType, this.obscure = false});
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
+    super.key,
+    this.hintText,
+    this.imagePath,
+    this.keyboardType,
+    this.obscure = false,
+    this.onChanged,
+  });
 
   final String? hintText;
   final String? imagePath;
   final TextInputType? keyboardType;
   final bool? obscure;
+  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +26,12 @@ class SignInTextFieldWidget extends StatelessWidget {
         obscureText: obscure! ? true : false,
         decoration: InputDecoration(
           hintText: hintText,
-          prefix: Image.asset('assets/icons/$imagePath.png'),
+          contentPadding: const EdgeInsets.all(10.0),
+          prefix: Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Image.asset('assets/icons/$imagePath.png', height: 24.0, width: 24.0, color: Colors.black,),
+          ),
+          border: InputBorder.none,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -33,6 +46,7 @@ class SignInTextFieldWidget extends StatelessWidget {
             borderSide: const BorderSide(color: Colors.red),
           ),
         ),
+        onChanged: onChanged,
       ),
     );
   }

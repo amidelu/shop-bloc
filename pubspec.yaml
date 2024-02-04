@@ -17,11 +17,14 @@ dependencies:
   flutter_screenutil:
   dots_indicator:
   intl:
-  cloud_firestore:
   gap:
+  firebase_auth: ^4.17.2
+  firebase_core: ^2.25.2
+  cloud_firestore: ^4.15.2
 
 
   cupertino_icons: ^1.0.2
+  fluttertoast: ^8.2.4
 
 dev_dependencies:
   flutter_test:

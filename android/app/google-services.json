@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "46250013987",
+    "project_id": "shop-tutorial-95bbf",
+    "storage_bucket": "shop-tutorial-95bbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46250013987:android:29cceed4f9c1d845b3c896",
+        "android_client_info": {
+          "package_name": "com.example.learning_shop_bloc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6JqVi3sHZxzdb9UrvU7aDhIRqJ16CEPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

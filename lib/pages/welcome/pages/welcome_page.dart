@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_shop_bloc/common/values/colors.dart';
-import 'package:learning_shop_bloc/dashboard/dashboard_page.dart';
 
 import '../bloc/welcome_bloc.dart';
 import '../bloc/welcome_event.dart';
@@ -62,7 +61,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ],
                 ),
                 Positioned(
-                  bottom: 100.h,
+                  bottom: 60.h,
                   child: DotsIndicator(
                     position: state.page,
                     dotsCount: 3,

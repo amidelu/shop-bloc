@@ -1,31 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning_shop_bloc/common/values/colors.dart';
 
-class SignInWidget extends StatelessWidget {
-  const SignInWidget({super.key});
+import '../common/values/colors.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 40.h, bottom: 20.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _reusableIcons('google'),
-          _reusableIcons('apple'),
-          _reusableIcons('facebook'),
-        ],
-      ),
+Widget reusableIcons(String iconName) => SizedBox(
+      height: 40.w,
+      width: 40.w,
+      child: Image.asset('assets/icons/$iconName.png'),
     );
-  }
-
-  Widget _reusableIcons(String iconName) => SizedBox(
-        height: 40.w,
-        width: 40.w,
-        child: Image.asset('assets/icons/$iconName.png'),
-      );
-}
 
 Widget reusableText(String text) => Container(
       margin: EdgeInsets.only(top: 5.h),
@@ -38,8 +20,7 @@ Widget reusableText(String text) => Container(
       ),
     );
 
-Widget forgotPassword() => Container(
-      margin: EdgeInsets.only(left: 25.r),
+Widget forgotPassword() => SizedBox(
       width: 260.w,
       height: 45.h,
       child: GestureDetector(
@@ -56,16 +37,20 @@ Widget forgotPassword() => Container(
       ),
     );
 
-Widget buildLogAndRegButton(String buttonName) => GestureDetector(
-      onTap: () {},
+Widget buildLogAndRegButton(
+        {required String buttonName,
+        Color? buttonColor,
+        void Function()? func}) =>
+    GestureDetector(
+      onTap: func,
       child: Container(
-        margin: EdgeInsets.only(left: 25.r, right: 25.r, top: 20.r),
-        width: 325.w,
+        margin: EdgeInsets.only(top: 20.r),
+        width: double.infinity,
         height: 50.h,
         decoration: BoxDecoration(
-          color: buttonName == 'Login' ? AppColors.primaryElement : AppColors.primaryBackground,
+          color: buttonColor ?? AppColors.primaryElement,
           borderRadius: BorderRadius.circular(15.r),
-          border: Border.all(color: buttonName == 'Login' ? Colors.transparent : AppColors.primaryFourthElementText),
+          border: Border.all(color: buttonColor ?? AppColors.primaryElement),
           boxShadow: [
             BoxShadow(
               spreadRadius: 1,
@@ -81,7 +66,9 @@ Widget buildLogAndRegButton(String buttonName) => GestureDetector(
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.normal,
-              color: buttonName == 'Login' ? AppColors.primaryBackground : AppColors.primaryText,
+              color: buttonName == 'Login'
+                  ? AppColors.primaryBackground
+                  : AppColors.primaryText,
             ),
           ),
         ),
