@@ -120,8 +120,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 );
               } else {
                 // Jump to next page and remove welcome pages
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil('signIn', (route) => false);
+                Navigator.of(context).pushNamedAndRemoveUntil('signIn', (route) => false);
               }
             },
             child: Container(
