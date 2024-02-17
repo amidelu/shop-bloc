@@ -6,7 +6,6 @@ import 'package:learning_shop_bloc/firebase_options.dart';
 import 'package:learning_shop_bloc/pages/app_bloc_providers.dart';
 import 'package:learning_shop_bloc/pages/register/pages/register_page.dart';
 
-import 'pages/dashboard/dashboard_page.dart';
 import 'pages/sign_in/pages/sign_in_page.dart';
 import 'pages/welcome/pages/welcome_page.dart';
 
@@ -37,9 +36,8 @@ class MyApp extends StatelessWidget {
           ),
           home: const WelcomePage(),
           routes: {
-            'signIn': (context) => SignInPage(),
-            'dashboard': (context) => DashboardPage(),
-            'register': (context) => RegisterPage(),
+            'signIn': (context) => const SignInPage(),
+            'register': (context) => const RegisterPage(),
           },
         ),
       ),

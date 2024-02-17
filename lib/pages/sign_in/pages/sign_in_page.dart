@@ -55,7 +55,7 @@ class _SignInPageState extends State<SignInPage> {
                       CustomTextFormField(
                         hintText: 'Enter your password',
                         imagePath: 'lock',
-                        keyboardType: TextInputType.multiline,
+                        keyboardType: TextInputType.visiblePassword,
                         onChanged: (value) {
                           context.read<SignInBloc>().add(PasswordEvent(value!));
                         },

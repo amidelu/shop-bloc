@@ -40,6 +40,7 @@ Widget forgotPassword() => SizedBox(
 Widget buildLogAndRegButton(
         {required String buttonName,
         Color? buttonColor,
+        Color? borderColor,
         void Function()? func}) =>
     GestureDetector(
       onTap: func,
@@ -50,7 +51,7 @@ Widget buildLogAndRegButton(
         decoration: BoxDecoration(
           color: buttonColor ?? AppColors.primaryElement,
           borderRadius: BorderRadius.circular(15.r),
-          border: Border.all(color: buttonColor ?? AppColors.primaryElement),
+          border: Border.all(color: borderColor ?? AppColors.primaryElement),
           boxShadow: [
             BoxShadow(
               spreadRadius: 1,
