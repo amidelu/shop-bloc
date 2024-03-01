@@ -32,9 +32,9 @@ class RegisterController {
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
 
       if (credential.user != null) {
-        await credential.user?.sendEmailVerification();
+        // await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(username);
-        customToast(msg: 'An email is sent for verification');
+        customToast(msg: 'Please login using email and password');
         // Going to previous page
         Navigator.of(context).pop();
       }

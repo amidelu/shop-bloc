@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../common/values/colors.dart';
+import '../common/values/app_colors.dart';
 
 Widget reusableIcons(String iconName) => SizedBox(
       height: 40.w,

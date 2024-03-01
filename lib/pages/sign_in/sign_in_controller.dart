@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learning_shop_bloc/common/values/constant.dart';
 import 'package:learning_shop_bloc/common/widgets/custom_toast.dart';
+import 'package:learning_shop_bloc/global.dart';
 
 import 'bloc/bloc/sign_in_bloc.dart';
 
@@ -25,8 +27,7 @@ class SignInController {
         }
 
         try {
-          final credential =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailAddress,
             password: password,
           );
@@ -36,9 +37,15 @@ class SignInController {
             return;
           }
 
-          if (!credential.user!.emailVerified) {
+          /*if (!credential.user!.emailVerified) {
             customToast(msg: 'Need to verify your email account');
             return;
+          }*/
+          
+          final user = credential.user;
+          if (user != null) {
+            Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
+            Global.storageService.setBool(AppConstants.isLoggedIn, true);
           }
 
         } on FirebaseAuthException catch (e) {

@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning_shop_bloc/common/values/colors.dart';
+import 'package:learning_shop_bloc/common/values/app_colors.dart';
+import 'package:learning_shop_bloc/common/values/constant.dart';
+import 'package:learning_shop_bloc/global.dart';
 
 import '../bloc/welcome_bloc.dart';
 import '../bloc/welcome_event.dart';
@@ -120,6 +122,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 );
               } else {
                 // Jump to next page and remove welcome pages
+                Global.storageService.setBool(AppConstants.deviceOpenFirstTime, true);
                 Navigator.of(context).pushNamedAndRemoveUntil('signIn', (route) => false);
               }
             },

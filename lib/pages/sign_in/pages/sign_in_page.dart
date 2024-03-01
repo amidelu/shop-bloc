@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:learning_shop_bloc/common/values/colors.dart';
+import 'package:learning_shop_bloc/common/values/app_colors.dart';
 import 'package:learning_shop_bloc/pages/sign_in/bloc/bloc/sign_in_bloc.dart';
 import 'package:learning_shop_bloc/pages/sign_in/bloc/bloc/sign_in_state.dart';
 
@@ -64,6 +64,7 @@ class _SignInPageState extends State<SignInPage> {
                       Gap(20.r),
                       buildLogAndRegButton(buttonName: 'Login', func: () {
                         SignInController(context: context).handleSignIn('email');
+
                       }),
                       buildLogAndRegButton(buttonName: 'Register', buttonColor: AppColors.primaryBackground, func: () {
                         Navigator.pushNamed(context, 'register');
