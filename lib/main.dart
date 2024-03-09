@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_shop_bloc/global.dart';
 import 'package:learning_shop_bloc/common/routes/page_entity.dart';
 import 'package:learning_shop_bloc/global_theme.dart';
+import 'package:learning_shop_bloc/pages/home/home_page.dart';
 
 void main() async {
   await Global.init();
