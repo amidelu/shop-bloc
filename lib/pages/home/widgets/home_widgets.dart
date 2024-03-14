@@ -181,3 +181,38 @@ Widget _reusableMenuText(String menuText, {Color textColor = AppColors.primaryEl
     ),
   );
 }
+
+Widget courseGrid() => Container(
+  padding: EdgeInsets.all(12.r),
+  decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15.w),
+      image: const DecorationImage(
+        image: AssetImage('assets/icons/Image_2.png'),
+        fit: BoxFit.fill,
+      )),
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.end,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Best Course for IT',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+            color: AppColors.primaryElementText,
+            fontWeight: FontWeight.bold,
+            fontSize: 11.sp),
+      ),
+      SizedBox(height: 5.h),
+      Text(
+        'Flutter Course',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: AppColors.primaryFourthElementText,
+          fontSize: 8.sp,
+        ),
+      ),
+    ],
+  ),
+);
