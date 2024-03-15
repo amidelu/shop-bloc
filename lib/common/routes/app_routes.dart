@@ -4,4 +4,5 @@ class AppRoutes {
   static const signIn = 'signIn';
   static const register = 'register';
   static const homePage = 'home_page';
+  static const settingsPage = 'settings_page';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_shop_bloc/common/values/app_colors.dart';
 import 'package:learning_shop_bloc/pages/home/home_page.dart';
+import 'package:learning_shop_bloc/pages/profile/profile_page.dart';
 
 Widget buildPage(int index) {
   List<Widget> pages = [
@@ -9,7 +10,7 @@ Widget buildPage(int index) {
     const Center(child: Text('Search')),
     const Center(child: Text('Course')),
     const Center(child: Text('Chat')),
-    const Center(child: Text('Profile')),
+    const ProfilePage(),
   ];
 
   return pages[index];
