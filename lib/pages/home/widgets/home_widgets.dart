@@ -12,6 +12,8 @@ import 'package:learning_shop_bloc/pages/home/bloc/home_page_bloc.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_event.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_state.dart';
 
+import '../../../global_widgets/base_text_widget.dart';
+
 Widget homePageText(String text,
     {Color color = AppColors.primaryText, double topMargin = 15.0}) {
   return Container(
@@ -130,8 +132,8 @@ Widget menuView() {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            _reusableText('Choose your course'),
-            _reusableText('See All', color: AppColors.primaryThirdElementText, fontSize: 12),
+            baseTextWidget('Choose your course'),
+            baseTextWidget('See All', color: AppColors.primaryThirdElementText, fontSize: 12),
           ],
         ),
       ),
@@ -149,22 +151,6 @@ Widget menuView() {
   );
 }
 
-Widget _reusableText(
-  String text, {
-  Color color = AppColors.primaryText,
-  int fontSize = 16,
-  FontWeight fontWeight = FontWeight.bold,
-}) {
-  return Text(
-    text,
-    style: TextStyle(
-      fontSize: fontSize.sp,
-      color: color,
-      fontWeight: fontWeight,
-    ),
-  );
-}
-
 Widget _reusableMenuText(String menuText, {Color textColor = AppColors.primaryElementText, Color backgroundColor = AppColors.primaryElement}) {
   return Container(
     margin: EdgeInsets.only(right: 20.w),
@@ -173,7 +159,7 @@ Widget _reusableMenuText(String menuText, {Color textColor = AppColors.primaryEl
       color: backgroundColor,
       borderRadius: BorderRadius.circular(7.w),
     ),
-    child: _reusableText(
+    child: baseTextWidget(
       menuText,
       fontSize: 11,
       fontWeight: FontWeight.normal,

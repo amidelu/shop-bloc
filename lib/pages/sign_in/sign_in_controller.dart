@@ -44,8 +44,8 @@ class SignInController {
           
           final user = credential.user;
           if (user != null) {
+            Global.storageService.setString(AppConstants.userTokenKey, '123456');
             Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
-            Global.storageService.setBool(AppConstants.isLoggedIn, true);
           }
 
         } on FirebaseAuthException catch (e) {

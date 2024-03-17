@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_shop_bloc/common/routes/app_routes.dart';
 import 'package:learning_shop_bloc/common/values/app_colors.dart';
+import 'package:learning_shop_bloc/global_widgets/base_text_widget.dart';
 
 AppBar buildAppbar() {
   return AppBar(
@@ -13,14 +14,7 @@ AppBar buildAppbar() {
           height: 12.h,
           child: Image.asset('assets/icons/menu.png'),
         ),
-        Text(
-          'Profile',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: AppColors.primaryText,
-            fontSize: 16.sp,
-          ),
-        ),
+        baseTextWidget('Profile'),
         SizedBox(
           width: 24.w,
           height: 24.h,

@@ -13,11 +13,19 @@ class StorageService {
     return await _prefs.setBool(key, value);
   }
 
+  Future<bool> setString(String key, String value) async {
+    return await _prefs.setString(key, value);
+  }
+
   bool getDeviceFirstOpen() {
     return _prefs.getBool(AppConstants.deviceOpenFirstTime) ?? false;
   }
 
-  bool isLoggedIn() {
-    return _prefs.getBool(AppConstants.isLoggedIn) ?? false;
+  bool getIsLoggedIn() {
+    return _prefs.getString(AppConstants.userTokenKey) == null ? false : true;
+  }
+
+  Future<bool> removeData(String key) {
+    return _prefs.remove(key);
   }
 }
