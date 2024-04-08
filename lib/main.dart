@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_shop_bloc/environment.dart';
 import 'package:learning_shop_bloc/global.dart';
 import 'package:learning_shop_bloc/common/routes/page_entity.dart';
 import 'package:learning_shop_bloc/global_theme.dart';
 import 'package:learning_shop_bloc/pages/home/home_page.dart';
 
-void main() async {
+Future<void> main() async {
+  await dotenv.load(fileName: Environment.fileName);
   await Global.init();
   runApp(const MyApp());
 }

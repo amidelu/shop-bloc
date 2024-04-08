@@ -1,6 +1,11 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:learning_shop_bloc/common/apis/user_api.dart';
+import 'package:learning_shop_bloc/common/entities/entities.dart';
 import 'package:learning_shop_bloc/common/values/constant.dart';
 import 'package:learning_shop_bloc/common/widgets/custom_toast.dart';
 import 'package:learning_shop_bloc/global.dart';
@@ -27,7 +32,8 @@ class SignInController {
         }
 
         try {
-          final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          final credential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailAddress,
             password: password,
           );
@@ -41,13 +47,26 @@ class SignInController {
             customToast(msg: 'Need to verify your email account');
             return;
           }*/
-          
+
           final user = credential.user;
           if (user != null) {
-            Global.storageService.setString(AppConstants.userTokenKey, '123456');
-            Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
-          }
+            String? displayName = user.displayName;
+            String? email = user.email;
+            String? id = user.uid;
+            String? photoUrl = user.photoURL;
 
+            LoginRequestEntity loginRequestEntity = LoginRequestEntity();
+            loginRequestEntity.avatar = photoUrl;
+            loginRequestEntity.name = displayName;
+            loginRequestEntity.email = email;
+            loginRequestEntity.openId = id;
+            // Type 1 means register by email
+            loginRequestEntity.type = 1;
+
+            loginRequest(loginRequestEntity);
+            // Global.storageService.setString(AppConstants.userTokenKey, '123456');
+            // Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
+          }
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {
             debugPrint('No User Found for that Email');
@@ -64,5 +83,15 @@ class SignInController {
     } catch (e) {
       debugPrint('Error from $runtimeType top try block: $e');
     }
+  }
+
+  // API calling method
+  void loginRequest(LoginRequestEntity loginRequestEntity) async {
+    EasyLoading.show(
+      indicator: const CircularProgressIndicator(),
+      maskType: EasyLoadingMaskType.clear,
+      dismissOnTap: true,
+    );
+    var result = await UserAPI.logIn(loginRequestEntity);
   }
 }
