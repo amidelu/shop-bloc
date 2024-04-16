@@ -7,6 +7,7 @@ import 'package:learning_shop_bloc/common/values/app_colors.dart';
 import 'package:learning_shop_bloc/global_widgets/custom_appbar.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_bloc.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_state.dart';
+import 'package:learning_shop_bloc/pages/home/home_controller.dart';
 import 'package:learning_shop_bloc/pages/home/widgets/home_widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,10 +18,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late HomeController _homeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _homeController = HomeController(context: context);
+    _homeController.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppbar(),
+      appBar: buildAppbar(_homeController.userProfile.avatar.toString()),
       body: BlocBuilder<HomePageBloc, HomePageState>(
         builder: (context, state) {
           return Container(
@@ -28,11 +38,9 @@ class _HomePageState extends State<HomePage> {
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
-                  child: homePageText('Home',
-                      color: AppColors.primaryThirdElementText),
+                  child: homePageText('Home', color: AppColors.primaryThirdElementText),
                 ),
-                SliverToBoxAdapter(
-                    child: homePageText('Amidelu', topMargin: 3)),
+                SliverToBoxAdapter(child: homePageText(_homeController.userProfile.name ?? '', topMargin: 3)),
                 SliverPadding(padding: EdgeInsets.only(top: 20.h)),
                 SliverToBoxAdapter(child: searchView()),
                 SliverToBoxAdapter(child: sliderView(context, state)),
@@ -40,8 +48,7 @@ class _HomePageState extends State<HomePage> {
                 SliverPadding(
                   padding: EdgeInsets.symmetric(vertical: 15.h),
                   sliver: SliverGrid(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 15,
                       crossAxisSpacing: 15,

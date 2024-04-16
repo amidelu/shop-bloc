@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_shop_bloc/common/widgets/custom_toast.dart';
+import 'package:learning_shop_bloc/environment.dart';
 import 'package:learning_shop_bloc/pages/register/bloc/register_bloc.dart';
 
 class RegisterController {
@@ -34,6 +35,8 @@ class RegisterController {
       if (credential.user != null) {
         // await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(username);
+        String photoUrl = 'uploads/default.png';
+        await credential.user?.updatePhotoURL(photoUrl);
         customToast(msg: 'Please login using email and password');
         // Going to previous page
         Navigator.of(context).pop();

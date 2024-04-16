@@ -7,5 +7,6 @@ class UserAPI {
       'api/login',
       queryParameters: params?.toJson(),
     );
+    return UserLoginResponseEntity.fromJson(response);
   }
 }

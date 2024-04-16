@@ -24,8 +24,13 @@ class HttpUtil {
     dio = Dio(options);
   }
 
-  Future postApi(String path,
-      {dynamic data, Map<String, dynamic>? queryParameters}) async {
+  Future postApi(String path, {dynamic data, Map<String, dynamic>? queryParameters}) async {
+    if(kDebugMode) {
+      print('Request end point: $path');
+      print('Request Data: $data');
+      print('Request query parameters: $queryParameters');
+    }
+
     var response = await dio.post(
       path,
       data: data,

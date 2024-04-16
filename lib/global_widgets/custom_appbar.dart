@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-AppBar buildAppbar() {
+import '../environment.dart';
+
+AppBar buildAppbar(String avatar) {
   return AppBar(
     title: Container(
       margin: EdgeInsets.only(left: 7.w, right: 7.w),
@@ -14,9 +16,9 @@ AppBar buildAppbar() {
             child: Container(
               width: 40.w,
               height: 40.h,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/icons/person.png')
+                      image: NetworkImage(avatar)
                   )
               ),
             ),

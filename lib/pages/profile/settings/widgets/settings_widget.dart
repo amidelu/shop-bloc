@@ -24,8 +24,8 @@ Widget settingsButton(BuildContext context) => GestureDetector(
             TextButton(
                 onPressed: () {
                   context.read<AppBloc>().add(const TriggerAppEvent(0));
-                  Global.storageService.removeData(
-                      AppConstants.userTokenKey);
+                  Global.storageService.removeData(AppConstants.userTokenKey);
+                  Global.storageService.removeData(AppConstants.userProfile);
                   Navigator.of(context)
                       .pushNamedAndRemoveUntil(
                       AppRoutes.signIn,

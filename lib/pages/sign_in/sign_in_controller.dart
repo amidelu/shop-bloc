@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,8 +33,7 @@ class SignInController {
         }
 
         try {
-          final credential =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailAddress,
             password: password,
           );
@@ -54,7 +54,6 @@ class SignInController {
             String? email = user.email;
             String? id = user.uid;
             String? photoUrl = user.photoURL;
-
             LoginRequestEntity loginRequestEntity = LoginRequestEntity();
             loginRequestEntity.avatar = photoUrl;
             loginRequestEntity.name = displayName;
@@ -64,8 +63,6 @@ class SignInController {
             loginRequestEntity.type = 1;
 
             loginRequest(loginRequestEntity);
-            // Global.storageService.setString(AppConstants.userTokenKey, '123456');
-            // Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
           }
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {
@@ -93,5 +90,19 @@ class SignInController {
       dismissOnTap: true,
     );
     var result = await UserAPI.logIn(loginRequestEntity);
+
+    if (result.code == 200) {
+      try {
+        Global.storageService.setString(AppConstants.userProfile, jsonEncode(result.data!));
+        Global.storageService.setString(AppConstants.userTokenKey, result.data!.accessToken!);
+        EasyLoading.dismiss();
+        Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
+      } catch (e) {
+        debugPrint('Saving local storage error: ${e.toString()}');
+      }
+    } else {
+      EasyLoading.dismiss();
+      customToast(msg: 'Unknown Error');
+    }
   }
 }

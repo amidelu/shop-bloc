@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_shop_bloc/environment.dart';
 import 'package:learning_shop_bloc/global.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         child: MaterialApp(
+          builder: EasyLoading.init(),
           debugShowCheckedModeBanner: false,
           theme: GTheme.lightTheme,
           darkTheme: GTheme.darkTheme,
