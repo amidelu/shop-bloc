@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:learning_shop_bloc/environment.dart';
+import 'package:learning_shop_bloc/global.dart';
 
 class HttpUtil {
   // Creating singleton with internal constructor
@@ -18,7 +19,7 @@ class HttpUtil {
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         contentType: 'application/json: charset=utf-8',
-        headers: {},
+        headers: getAuthorizationHeader(),
         responseType: ResponseType.json);
 
     dio = Dio(options);
@@ -41,5 +42,14 @@ class HttpUtil {
       print('Response from post api: ${response.data}');
     }
     return response.data;
+  }
+
+  Map<String, dynamic>? getAuthorizationHeader() {
+    var headers = <String, dynamic> {};
+    var accessToken = Global.storageService.getUserToken();
+    if (accessToken.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $accessToken';
+    }
+    return headers;
   }
 }

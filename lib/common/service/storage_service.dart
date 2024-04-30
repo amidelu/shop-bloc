@@ -32,6 +32,10 @@ class StorageService {
     return _prefs.remove(key);
   }
 
+  String getUserToken() {
+    return _prefs.getString(AppConstants.userTokenKey) ?? '';
+  }
+
   UserItem getUserProfile() {
     var profile = _prefs.getString(AppConstants.userProfile) ?? '';
     if (profile.isNotEmpty) {
