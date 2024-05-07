@@ -1,13 +1,11 @@
-import 'dart:ui';
-
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:learning_shop_bloc/common/entities/course.dart';
 import 'package:learning_shop_bloc/common/values/app_colors.dart';
+import 'package:learning_shop_bloc/common/values/constant.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_bloc.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_event.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_state.dart';
@@ -133,7 +131,8 @@ Widget menuView() {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             baseTextWidget('Choose your course'),
-            baseTextWidget('See All', color: AppColors.primaryThirdElementText, fontSize: 12),
+            baseTextWidget('See All',
+                color: AppColors.primaryThirdElementText, fontSize: 12),
           ],
         ),
       ),
@@ -142,8 +141,12 @@ Widget menuView() {
         child: Row(
           children: [
             _reusableMenuText('All'),
-            _reusableMenuText('Popular', textColor: AppColors.primaryThirdElementText, backgroundColor: Colors.white),
-            _reusableMenuText('Newest', textColor: AppColors.primaryThirdElementText, backgroundColor: Colors.white),
+            _reusableMenuText('Popular',
+                textColor: AppColors.primaryThirdElementText,
+                backgroundColor: Colors.white),
+            _reusableMenuText('Newest',
+                textColor: AppColors.primaryThirdElementText,
+                backgroundColor: Colors.white),
           ],
         ),
       ),
@@ -151,7 +154,9 @@ Widget menuView() {
   );
 }
 
-Widget _reusableMenuText(String menuText, {Color textColor = AppColors.primaryElementText, Color backgroundColor = AppColors.primaryElement}) {
+Widget _reusableMenuText(String menuText,
+    {Color textColor = AppColors.primaryElementText,
+    Color backgroundColor = AppColors.primaryElement}) {
   return Container(
     margin: EdgeInsets.only(right: 20.w),
     padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
@@ -168,37 +173,38 @@ Widget _reusableMenuText(String menuText, {Color textColor = AppColors.primaryEl
   );
 }
 
-Widget courseGrid() => Container(
-  padding: EdgeInsets.all(12.r),
-  decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(15.w),
-      image: const DecorationImage(
-        image: AssetImage('assets/icons/Image_2.png'),
-        fit: BoxFit.fill,
-      )),
-  child: Column(
-    mainAxisAlignment: MainAxisAlignment.end,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        'Best Course for IT',
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            color: AppColors.primaryElementText,
-            fontWeight: FontWeight.bold,
-            fontSize: 11.sp),
-      ),
-      SizedBox(height: 5.h),
-      Text(
-        'Flutter Course',
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          color: AppColors.primaryFourthElementText,
-          fontSize: 8.sp,
+Widget courseGrid(CourseItem item) => Container(
+      padding: EdgeInsets.all(12.r),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.w),
+        image: DecorationImage(
+          image: NetworkImage(AppConstants.serverUploads + item.thumbnail!),
+          fit: BoxFit.fill,
         ),
       ),
-    ],
-  ),
-);
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            item.name ?? '',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                color: AppColors.primaryElementText,
+                fontWeight: FontWeight.bold,
+                fontSize: 11.sp),
+          ),
+          SizedBox(height: 5.h),
+          Text(
+            item.description ?? '',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: AppColors.primaryFourthElementText,
+              fontSize: 8.sp,
+            ),
+          ),
+        ],
+      ),
+    );

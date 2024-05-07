@@ -3,16 +3,16 @@ import 'package:learning_shop_bloc/common/entities/course.dart';
 class HomePageState {
   const HomePageState({
     this.index = 0,
-    this.courseItem = const <CourseItem>[],
+    this.courseList = const <CourseItem>[],
   });
 
   final int index;
-  final List<CourseItem> courseItem;
+  final List<CourseItem> courseList;
 
-  HomePageState copyWith({int? index, List<CourseItem>? courseItem}) {
+  HomePageState copyWith({int? index, List<CourseItem>? courseList}) {
     return HomePageState(
       index: index ?? this.index,
-      courseItem: courseItem ?? this.courseItem,
+      courseList: courseList ?? this.courseList,
     );
   }
 }

@@ -13,6 +13,6 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   }
 
   void _homePageCourseItem(HomePageCourseItem event, Emitter<HomePageState> emit) {
-    emit(state.copyWith(courseItem: event.courseItem));
+    emit(state.copyWith(courseList: event.courseItem));
   }
 }
