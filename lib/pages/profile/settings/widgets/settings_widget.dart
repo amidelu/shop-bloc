@@ -7,6 +7,8 @@ import 'package:learning_shop_bloc/common/values/constant.dart';
 import 'package:learning_shop_bloc/global.dart';
 import 'package:learning_shop_bloc/pages/application/bloc/app_bloc.dart';
 import 'package:learning_shop_bloc/pages/application/bloc/app_event.dart';
+import 'package:learning_shop_bloc/pages/home/bloc/home_page_bloc.dart';
+import 'package:learning_shop_bloc/pages/home/bloc/home_page_event.dart';
 
 Widget settingsButton(BuildContext context) => GestureDetector(
   onTap: () {
@@ -24,12 +26,10 @@ Widget settingsButton(BuildContext context) => GestureDetector(
             TextButton(
                 onPressed: () {
                   context.read<AppBloc>().add(const TriggerAppEvent(0));
+                  context.read<HomePageBloc>().add(const HomePageDots(0));
                   Global.storageService.removeData(AppConstants.userTokenKey);
                   Global.storageService.removeData(AppConstants.userProfile);
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(
-                      AppRoutes.signIn,
-                          (route) => false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.signIn, (route) => false);
                 },
                 child: const Text('Confirm')),
           ],

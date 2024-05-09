@@ -39,7 +39,7 @@ class HttpUtil {
     );
 
     if(kDebugMode) {
-      print('Response from post api: ${response.data}');
+      print('Response from post api: $response');
     }
     return response.data;
   }

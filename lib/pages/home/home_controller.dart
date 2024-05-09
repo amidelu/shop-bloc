@@ -11,11 +11,17 @@ class HomeController {
   HomeController({required this.context});
 
   Future<void> init() async {
-    var result = await CourseApi.courseList();
-    if (result.code == 200) {
-      context.read<HomePageBloc>().add(HomePageCourseItem(result.data));
-    } else {
-
+    // For checking if user is logged in
+    if (Global.storageService.getUserToken().isNotEmpty) {
+      var result = await CourseApi.courseList();
+      if (result.code == 200) {
+        // For checking if the context is available and removing warning
+        if (context.mounted) {
+          context.read<HomePageBloc>().add(HomePageCourseItem(result.data!));
+        }
+      } else {
+        debugPrint('From $runtimeType: ${result.code}');
+      }
     }
   }
 }

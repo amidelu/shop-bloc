@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,8 @@ class SignInController {
         }
 
         try {
-          final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          final credential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailAddress,
             password: password,
           );
@@ -97,7 +97,10 @@ class SignInController {
         // Used for authorization
         Global.storageService.setString(AppConstants.userTokenKey, result.data!.accessToken!);
         EasyLoading.dismiss();
-        Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
+        // For checking if the context is available and removing warning
+        if (context.mounted) {
+          Navigator.of(context).pushNamedAndRemoveUntil('application', (route) => false);
+        }
       } catch (e) {
         debugPrint('Saving local storage error: ${e.toString()}');
       }

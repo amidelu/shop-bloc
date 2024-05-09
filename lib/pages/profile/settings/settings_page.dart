@@ -4,6 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_shop_bloc/common/routes/app_routes.dart';
 import 'package:learning_shop_bloc/common/values/constant.dart';
 import 'package:learning_shop_bloc/global.dart';
+import 'package:learning_shop_bloc/pages/application/bloc/app_bloc.dart';
+import 'package:learning_shop_bloc/pages/application/bloc/app_event.dart';
+import 'package:learning_shop_bloc/pages/home/bloc/home_page_bloc.dart';
+import 'package:learning_shop_bloc/pages/home/bloc/home_page_event.dart';
 import 'package:learning_shop_bloc/pages/profile/settings/widgets/settings_widget.dart';
 
 import 'bloc/settings_bloc.dart';
@@ -17,6 +21,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

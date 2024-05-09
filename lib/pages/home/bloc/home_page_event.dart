@@ -5,7 +5,7 @@ abstract class HomePageEvent {
 }
 
 class HomePageDots extends HomePageEvent {
-  HomePageDots(this.index);
+  const HomePageDots(this.index) : super();
   final int index;
 }
 
