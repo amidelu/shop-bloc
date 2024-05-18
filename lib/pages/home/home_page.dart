@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_shop_bloc/common/routes/app_routes.dart';
 import 'package:learning_shop_bloc/common/values/app_colors.dart';
 import 'package:learning_shop_bloc/global_widgets/custom_appbar.dart';
 import 'package:learning_shop_bloc/pages/home/bloc/home_page_bloc.dart';
@@ -57,7 +58,14 @@ class _HomePageState extends State<HomePage> {
                     delegate: SliverChildBuilderDelegate(
                       childCount: state.courseList.length,
                       (BuildContext context, int index) => GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            AppRoutes.courseDetailsPage,
+                            arguments: {
+                              'id': state.courseList.elementAt(index).id,
+                            },
+                          );
+                        },
                         child: courseGrid(state.courseList[index]),
                       ),
                     ),

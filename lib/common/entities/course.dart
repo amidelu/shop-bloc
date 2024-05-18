@@ -158,7 +158,7 @@ class CourseItem {
   String? description;
   String? thumbnail;
   String? video;
-  String? price;
+  int? price;
   String? amountTotal;
   int? lessonNum;
   int? videoLen;
